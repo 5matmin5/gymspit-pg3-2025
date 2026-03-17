@@ -1,25 +1,16 @@
-﻿//napiš program který se tě zeptá na barvu vlastnosti, zvíře, jídlo a místo. Poté ti vygeneruje krátký příběh s použitím těchto slov.
-using System;
-class Program
-{
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Vítej v Mad Libs! Odpověz na následující otázky:");
-        
-        Console.Write("Zadej barvu: ");
-        string barva = Console.ReadLine();
-        
-        Console.Write("Zadej zvíře: ");
-        string zvire = Console.ReadLine();
-       
-        Console.Write("Zadej jídlo: ");
-        string jidlo = Console.ReadLine();
-       
-        Console.Write("Zadej místo: ");
-        string misto = Console.ReadLine();
-        string pribeh = $"Jednoho dne jsem viděl/a {barva} {zvire}, které jedlo {jidlo} v {misto}. Bylo to neuvěřitelné!";
-       
-        Console.WriteLine("\nTady je tvůj příběh:");
-        Console.WriteLine(pribeh);
-    }
-}
+﻿using Lecture18;
+using System.Numerics;
+
+Random random = new Random();
+
+Character c3PO = new NPC("C-3PO", 15, 6, 4, random);
+Character r2D2 = new NPC("R2-D2", 10, 7, 5, random);
+Character luke = new Player("Luke", 20, 4, 4, Console.In, Console.Out);
+
+Game game = new Game(c3PO, r2D2, new Die(random, 6));
+game.Run(Console.Out);
+Console.WriteLine();
+
+Game game2 = new Game(c3PO, luke, new Die(random, 6));
+game2.Run(Console.Out);
+Console.WriteLine();
